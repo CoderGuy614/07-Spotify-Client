@@ -26,7 +26,22 @@ class Songs extends React.Component {
       <div id="page">
         <Sidebar page="songs" />
         <div id="songs">
-          <table>{/* songs */}</table>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Genre</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.songs.map((s, i) => {
+                return <Song key={i} song={this.state.songs[i]} />;
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     );
