@@ -13,14 +13,21 @@ class Stripe extends React.Component {
     this.props.stripe.createToken({}).then(token =>
       axios
         .post(`${process.env.REACT_APP_API}/pay`, { token: token.token.id })
-        .then()
-        .catch()
+        .then(res => {
+          console.log(res);
+          this.setState({
+            message: {
+              content: "Thank You! Your payment was successful!",
+              type: res.data.success ? "success" : "error"
+            }
+          });
+        })
+        .then(this.sendMessage)
     );
   };
-  //   if (res) {
-  //     axios.post(`${process.env.REACT_APP_API}/pay`, { token: res.token });
-  //   }
-
+  sendMessage = () => {
+    this.props.getStripeMessage(this.state.message.type);
+  };
   getMessageClass = () => {
     if (!this.state.message.type) {
       return "";
