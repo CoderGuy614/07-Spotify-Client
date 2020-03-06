@@ -13,11 +13,9 @@ class Album extends React.Component {
     songs: []
   };
   componentWillMount() {
-    console.log(this.props);
     axios
       .get(`${process.env.REACT_APP_API}/albums/${this.props.match.params.id}`)
       .then(res => {
-        console.log(res.data[0]);
         this.setState({
           album: res.data[0]
         });
@@ -26,8 +24,11 @@ class Album extends React.Component {
         console.log({ err });
       });
     axios
-      .get("")
+      .get(
+        `${process.env.REACT_APP_API}/songs?album=${this.props.match.params.id}`
+      )
       .then(res => {
+        console.log(res);
         this.setState({
           songs: res.data
         });
@@ -52,7 +53,22 @@ class Album extends React.Component {
             </div>
           </div>
           <div id="songs">
-            <table>{/* songs */}</table>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Artist</th>
+                  <th>Album</th>
+                  <th>Genre</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.songs.map((s, i) => {
+                  return <Song key={i} song={this.state.songs[i]} />;
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
