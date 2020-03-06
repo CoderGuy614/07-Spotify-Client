@@ -14,7 +14,6 @@ class Songs extends React.Component {
     axios
       .get(`${process.env.REACT_APP_API}/songs`)
       .then(res => {
-        console.log(res);
         this.setState({ songs: res.data });
       })
       .catch(err => {

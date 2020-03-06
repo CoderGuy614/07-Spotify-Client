@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import "../styles/album.css";
 
 class Album extends React.Component {
+  componentWillReceiveProps = props => {
+    console.log(props);
+  };
   render() {
     return (
-      <Link to={""} className="album">
+      <Link to={`/albums/${this.props.album.id}`} className="album">
         <div
           className="cover"
           style={{ backgroundImage: `url('${this.props.album.cover}')` }}
