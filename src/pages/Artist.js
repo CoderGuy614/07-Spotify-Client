@@ -14,17 +14,19 @@ class Artist extends React.Component {
   };
   componentWillMount() {
     axios
-      .get(``)
+      .get(`${process.env.REACT_APP_API}/artists/${this.props.match.params.id}`)
       .then(res => {
         this.setState({
-          artist: res.data
+          artist: res.data[0]
         });
       })
       .catch(err => {
         console.log({ err });
       });
     axios
-      .get("")
+      .get(
+        `${process.env.REACT_APP_API}/songs?artist=${this.props.match.params.id}`
+      )
       .then(res => {
         this.setState({
           songs: res.data
@@ -42,7 +44,9 @@ class Artist extends React.Component {
           <div className="album">
             <div
               className="cover"
-              style={{ backgroundImage: `url('${this.state.artist.cover}')` }}
+              style={{
+                backgroundImage: `url('${this.state.artist.cover}')`
+              }}
             ></div>
             <div className="info">
               <h2>{this.state.artist.name}</h2>
