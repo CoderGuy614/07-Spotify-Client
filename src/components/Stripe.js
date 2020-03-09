@@ -14,7 +14,6 @@ class Stripe extends React.Component {
       axios
         .post(`${process.env.REACT_APP_API}/pay`, { token: token.token.id })
         .then(res => {
-          console.log(res);
           this.setState({
             message: {
               content: "Thank You! Your payment was successful!",

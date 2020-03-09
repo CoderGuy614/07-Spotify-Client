@@ -1,11 +1,11 @@
 #songs {
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #songs > table {
   width: 100%;
-  border-collapse: collapse;
+  overflow-y: scroll;
   margin-bottom: 50px;
 }
 
@@ -75,10 +75,10 @@
 
 /* Media */
 
-@media() {
+@media (max-width: 400px) {
   #page > #songs {
-    height: ;
-    overflow-y: ;
+    height: 100vh;
+    overflow-y: scroll;
   }
   #songs > table {
     margin-bottom: 0;
